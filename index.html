@@ -192,6 +192,12 @@
             margin: 5px 0;
         }
 
+        .troubleshooting-list {
+            text-align: left;
+            margin: 10px auto;
+            max-width: 400px;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2em;
@@ -230,6 +236,13 @@
         const reposContainer = document.getElementById('repos');
         const loadingElement = document.getElementById('loading');
         const errorElement = document.getElementById('error');
+
+        // Helper function to escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
 
         // Language colors (from GitHub)
         const languageColors = {
@@ -341,7 +354,15 @@
                     .sort((a, b) => b.stargazers_count - a.stargazers_count);
 
                 if (filteredRepos.length === 0) {
-                    reposContainer.innerHTML = '<p class="loading">No non-forked repositories found. <a href="https://github.com/' + username + '?tab=repositories" style="color: #58a6ff;">View all on GitHub</a></p>';
+                    const link = document.createElement('a');
+                    link.href = `https://github.com/${escapeHtml(username)}?tab=repositories`;
+                    link.style.color = '#58a6ff';
+                    link.textContent = 'View all on GitHub';
+                    const message = document.createElement('p');
+                    message.className = 'loading';
+                    message.textContent = 'No non-forked repositories found. ';
+                    message.appendChild(link);
+                    reposContainer.appendChild(message);
                     return;
                 }
 
@@ -364,17 +385,18 @@
                 // Provide more helpful error messages
                 if (error.message === 'Failed to fetch') {
                     errorMessage = 'Unable to connect to GitHub API';
-                    additionalInfo = '<p>This might be due to:</p><ul style="text-align: left; margin: 10px auto; max-width: 400px;"><li>Network connectivity issues</li><li>Browser blocking the request</li><li>GitHub API being temporarily unavailable</li></ul>';
+                    additionalInfo = '<p>This might be due to:</p><ul class="troubleshooting-list"><li>Network connectivity issues</li><li>Browser blocking the request</li><li>GitHub API being temporarily unavailable</li></ul>';
                 } else if (error.message.includes('rate limit')) {
                     errorMessage = 'GitHub API rate limit exceeded';
                     additionalInfo = '<p>Please try again in a few minutes.</p>';
                 }
                 
+                const escapedUsername = escapeHtml(username);
                 errorElement.innerHTML = `
                     <h3>Error loading repositories</h3>
-                    <p style="margin: 10px 0;">${errorMessage}</p>
+                    <p style="margin: 10px 0;">${escapeHtml(errorMessage)}</p>
                     ${additionalInfo}
-                    <p style="margin-top: 15px;">Visit <a href="https://github.com/${username}" style="color: #58a6ff; text-decoration: underline;">github.com/${username}</a> directly to view repositories.</p>
+                    <p style="margin-top: 15px;">Visit <a href="https://github.com/${escapedUsername}" style="color: #58a6ff; text-decoration: underline;">github.com/${escapedUsername}</a> directly to view repositories.</p>
                     <button class="retry-button" onclick="location.reload()">Retry</button>
                 `;
             }
