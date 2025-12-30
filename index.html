@@ -1,390 +1,328 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trpwrmusic - GitHub Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <title>Diskriminierende KI</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+            color: #c9d1d9;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+        }
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+        h1 {
+            font-size: 3em;
+            color: #58a6ff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
+        }
 
-  <!-- Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+        .subtitle {
+            font-size: 1.2em;
+            color: #8b949e;
+            margin-bottom: 20px;
+        }
 
-  <!-- Font Awesome Styles -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        .profile-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: #21262d;
+            color: #58a6ff;
+            text-decoration: none;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+            transition: all 0.3s ease;
+        }
 
+        .profile-link:hover {
+            background: #30363d;
+            border-color: #58a6ff;
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.3);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2em;
+            color: #8b949e;
+        }
+
+        .repos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .repo-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .repo-card:hover {
+            transform: translateY(-5px);
+            border-color: #58a6ff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .repo-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .repo-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            fill: #8b949e;
+        }
+
+        .repo-name {
+            font-size: 1.3em;
+            color: #58a6ff;
+            text-decoration: none;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .repo-name:hover {
+            text-decoration: underline;
+        }
+
+        .repo-description {
+            color: #8b949e;
+            margin: 12px 0;
+            line-height: 1.5;
+        }
+
+        .repo-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 0.9em;
+            color: #8b949e;
+            margin-top: 12px;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .language-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .star-icon, .fork-icon {
+            width: 16px;
+            height: 16px;
+            fill: #8b949e;
+        }
+
+        .error {
+            background: #21262d;
+            border: 1px solid #f85149;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            color: #f85149;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #8b949e;
+            border-top: 1px solid #30363d;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .repos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
-    <div class="container d-flex align-items-center justify-content-lg-between">
-
-      <h1 class="logo me-auto me-lg-0"><a href="index.html">DisKI<span>.</span></a></h1>
-
-      <!-- Logo Alternative: -->
-      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#roadmap">Roadmap</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="#about">Über</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Kontakt</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-      <a href="info.html" class="get-started-btn scrollto">Lesen</a>
-
-    </div>
-  </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center justify-content-center">
-    <div class="container" data-aos="fade-up">
-
-      <br />
-      <br />
-      <br />
-
-      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
-        <div class="col-xl-6 col-lg-8">
-          <h1>Die Geschichte mit der KI<span>...</span></h1>
-          <h2>Von Diskriminierung und Informatikern</h2>
-        </div>
-      </div>
-
-      <br />
-      <br />
-      <br />
-
-      <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
-        <div class="col-xl-2 col-md-4">
-          <div class="icon-box">
-            <a class="scrollto" href="#roadmap">
-              <i class="fa fa-angle-down" style="font-size:48px"></i>
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section><!-- End Hero -->
-
-  <main id="main">
-
-    <!-- ======= roadmap Section ======= -->
-    <section id="roadmap" class="roadmap">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Roadmap</h2>
-          <p>Unsere Roadmap</p>
-        </div>
-
-      <div class="container">
-        <div class="row">
-          
-          <div class="col-lg-3" data-aos="zoom-in" data-aos-delay="300">
-            <div class="card card-margin bg-light border-light mb-3">
-              <div class="icon-box">
-                <div class="icon"><i class="bx bx-question-mark"></i></div>
-                <h4><a class="scrollto" href="info.html#was">Künstliche-<br> WAS?</a></h4>
-                <p>Was ist eine künstliche Intelligenz überhaupt?</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3" data-aos="zoom-in" data-aos-delay="300">
-                <div class="card card-margin bg-light border-light mb-3">
-                  <div class="icon-box">
-                    <div class="icon"><i class="bx bx-collapse"></i></div>
-                    <h4><a class="scrollto" href="info.html#sinne">Wie - Diskriminierung?</a></h4>
-                    <p>In welchem Sinne kann eine künstliche Intelligenz diskriminieren?</p>
-                  </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3" data-aos="zoom-in" data-aos-delay="300">
-              <div class="card card-margin bg-light border-light mb-3">
-                <div class="icon-box">
-                  <div class="icon"><i class="bx bx-search-alt-2"></i></div>
-                  <h4><a class="scrollto" href="info.html#wie">Und wie funktioniert das?</a></h4>
-                  <p>Wie kommt es zu dieser Diskriminierung?</p>
-                </div>
-              </div>
-          </div>
-
-          <div class="col-lg-3" data-aos="zoom-in" data-aos-delay="300">
-                <div class="card card-margin bg-light border-light mb-3">
-                  <div class="icon-box">
-                    <div class="icon"><i class="bx bx-transfer-alt"></i></div>
-                    <h4><a class="scrollto" href="info.html#jemals">Und kann man dagegen was tun?</a></h4>
-                    <p>Kann es jemals eine nicht diskriminierende KI geben?</p>
-                  </div>
-                </div>
-            </div>
-
-        </div>
-        </div>
-    </section><!-- End roadmap Section -->
-
-
-    <!-- ======= Team Section ======= -->
-    <section id="team" class="team">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Team</h2>
-          <p>Unser Team</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="100">
-              <div class="member-img">
-                <img src="assets/img/team/jan.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                  <p>Social-Media Icons nur Dummys</p>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Jan Wetzel</h4>
-                <span>Chief Information Officer / CIO</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="200">
-              <div class="member-img">
-                <img src="assets/img/team/max.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                  <p>Social-Media Icons nur Dummys</p>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Max Urban</h4>
-                <span>Chief Information Officer / CIO</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="300">
-              <div class="member-img">
-                <img src="assets/img/team/samuel.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                  <p>Social-Media Icons nur Dummys</p>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Samuel Rudnik</h4>
-                <span>Chief Technical Officer / CTO</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Team Section -->
-
-        <!-- ======= About Section ======= -->
-        <section id="about" class="about">
-          <div class="container" data-aos="fade-up">
-    
-            <div class="row">
-              <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-                <img src="assets/img/about.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right" data-aos-delay="100">
-                <h3>Über uns</h3>
-                <p class="">
-                  Durch ein Projekt unserer Schule in Cooperation mit <a href="https://digital-sparks.org">Digital Sparks</a> erarbeitete unser Team in den letzten Wochen viele Informationen 
-                  rund um die Frage "Wird es jemals eine nicht-diskriminierende KI geben?". 
-                  Als Ergebnis dieser Erarbeitungsphase erstellten wir dieses Endprodukt.<br />
-                  <br />
-                  Auf folgende Einzelpunkte haben wir uns dabei konzentriert:
-                </p>
-                <ul>
-                  <li><i class="ri-check-double-line"></i> Was ist eine künstliche Intelligenz?</li>
-                  <li><i class="ri-check-double-line"></i> In welchem Sinne kann eine solche diskriminieren?</li>
-                  <li><i class="ri-check-double-line"></i> Wie kommt es zu dieser Diskriminierung?</li>
-                  <li><i class="ri-check-double-line"></i> Kann es jemals eine nicht diskriminierende KI geben?</li>
-                </ul>
-                <p>
-                  Wir hoffen außerdem mit dieser Webseite Informationen komprimiert zur Verfügung stellen zu können.<br />
-                  Diese Seite richtet sich also an Softwareentwickler, Arbeitnehmer und -geber der Medienbranche und alle weiteren
-                  interessierten Personen.
-                </p>
-              </div>
-            </div>
-    
-          </div>
-        </section><!-- End About Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Ideen</h2>
-          <p>Teile uns deine Ideen mit</p>
-        </div>
-        <p>Ideen-Feature nur Dummy - kein Server verknüpft.</p>
-
-        <div class="row mt-5">
-
-          <div class="col-lg-4">
-            <div class="info">
-              
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
-                <p>Du hast eine Idee, Anregung oder Feedbak?<br />
-                  Hier kannst du uns schreiben:
-                </p>
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="col-lg-8 mt-5 mt-lg-0">
-
-            <div class="email">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Dein Name" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Deine Email-Adresse" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Thema" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Nachricht" required></textarea>
-              </div>
-              <div class="text-center"><button type="submit">Nachricht senden</button></div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6">
-            <div class="footer-info">
-              <h3>DisKI<span>.</span></h3>
-              <p>
-                Webseite entfällt der Impressumspflicht,<br />
-                da sie AUSSCHLIEßLICH zu privaten Zwecken dient.
-              </p>
-              <div class="social-links mt-3">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-              </div>
-              <br />
-              <p>Social-Media Icons nur Dummys</p>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Hilfreiche Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a class="scrollto" href="#hero">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a class="scrollto" href="#roadmap">Roadmap</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a class="scrollto" href="#team">Team</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a class="scrollto" href="#about">Über uns</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a class="scrollto" href="#contact">Kontakt</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Unser Newsletter</h4>
-            <p>Newsletter nur Dummy</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
     <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>DisKI</span></strong>. Alle Rechte vorbehalten
-      </div>
+        <header>
+            <h1>trpwrmusic</h1>
+            <p class="subtitle">GitHub Portfolio</p>
+            <a href="https://github.com/trpwrmusic" target="_blank" class="profile-link">
+                <svg style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+                View on GitHub
+            </a>
+        </header>
+
+        <div id="loading" class="loading">Loading repositories...</div>
+        <div id="repos" class="repos-grid"></div>
+        <div id="error" style="display: none;"></div>
+
+        <footer>
+            <p>Powered by GitHub API | Last updated: <span id="timestamp"></span></p>
+        </footer>
     </div>
-  </footer><!-- End Footer -->
 
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <script>
+        const username = 'trpwrmusic';
+        const reposContainer = document.getElementById('repos');
+        const loadingElement = document.getElementById('loading');
+        const errorElement = document.getElementById('error');
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+        // Language colors (from GitHub)
+        const languageColors = {
+            'JavaScript': '#f1e05a',
+            'Python': '#3572A5',
+            'Java': '#b07219',
+            'TypeScript': '#2b7489',
+            'HTML': '#e34c26',
+            'CSS': '#563d7c',
+            'PHP': '#4F5D95',
+            'Ruby': '#701516',
+            'C++': '#f34b7d',
+            'C': '#555555',
+            'Go': '#00ADD8',
+            'Rust': '#dea584',
+            'Swift': '#ffac45',
+            'Kotlin': '#F18E33',
+            'Dart': '#00B4AB',
+            'Shell': '#89e051',
+            'Vue': '#41b883',
+            'C#': '#178600'
+        };
 
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffTime = Math.abs(now - date);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays < 1) return 'today';
+            if (diffDays === 1) return 'yesterday';
+            if (diffDays < 30) return `${diffDays} days ago`;
+            if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
+            return `${Math.floor(diffDays / 365)} years ago`;
+        }
 
+        function createRepoCard(repo) {
+            const card = document.createElement('div');
+            card.className = 'repo-card';
+            card.onclick = () => window.open(repo.html_url, '_blank');
+
+            const languageColor = languageColors[repo.language] || '#8b949e';
+
+            card.innerHTML = `
+                <div class="repo-header">
+                    <svg class="repo-icon" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
+                    </svg>
+                    <a href="${repo.html_url}" class="repo-name" onclick="event.stopPropagation()">${repo.name}</a>
+                </div>
+                ${repo.description ? `<p class="repo-description">${repo.description}</p>` : ''}
+                <div class="repo-stats">
+                    ${repo.language ? `
+                        <span class="stat">
+                            <span class="language-dot" style="background-color: ${languageColor}"></span>
+                            ${repo.language}
+                        </span>
+                    ` : ''}
+                    <span class="stat">
+                        <svg class="star-icon" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path>
+                        </svg>
+                        ${repo.stargazers_count}
+                    </span>
+                    <span class="stat">
+                        <svg class="fork-icon" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
+                        </svg>
+                        ${repo.forks_count}
+                    </span>
+                    <span class="stat">Updated ${formatDate(repo.updated_at)}</span>
+                </div>
+            `;
+
+            return card;
+        }
+
+        async function fetchRepositories() {
+            try {
+                const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
+                
+                if (!response.ok) {
+                    throw new Error(`GitHub API returned ${response.status}`);
+                }
+
+                const repos = await response.json();
+                
+                loadingElement.style.display = 'none';
+
+                if (repos.length === 0) {
+                    reposContainer.innerHTML = '<p class="loading">No repositories found.</p>';
+                    return;
+                }
+
+                // Filter out forks if desired, and sort by stars
+                const filteredRepos = repos
+                    .filter(repo => !repo.fork) // Remove forks, comment out if you want to show them
+                    .sort((a, b) => b.stargazers_count - a.stargazers_count);
+
+                filteredRepos.forEach(repo => {
+                    reposContainer.appendChild(createRepoCard(repo));
+                });
+
+                // Update timestamp
+                document.getElementById('timestamp').textContent = new Date().toLocaleString('de-DE');
+
+            } catch (error) {
+                loadingElement.style.display = 'none';
+                errorElement.style.display = 'block';
+                errorElement.className = 'error';
+                errorElement.innerHTML = `
+                    <h3>Error loading repositories</h3>
+                    <p>${error.message}</p>
+                    <p>Please try again later or visit <a href="https://github.com/${username}" style="color: #58a6ff;">github.com/${username}</a> directly.</p>
+                `;
+            }
+        }
+
+        // Load repositories when page loads
+        fetchRepositories();
+    </script>
 </body>
-
 </html>
