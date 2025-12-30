@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -297,9 +297,9 @@
                     return;
                 }
 
-                // Filter out forks if desired, and sort by stars
+                // Filter out forks and sort by stars
                 const filteredRepos = repos
-                    .filter(repo => !repo.fork) // Remove forks, comment out if you want to show them
+                    .filter(repo => !repo.fork) // Remove this line to include forked repositories
                     .sort((a, b) => b.stargazers_count - a.stargazers_count);
 
                 filteredRepos.forEach(repo => {
